@@ -1,0 +1,86 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+}
+
+header {
+    background: linear-gradient(to right, #8e2de2, #4a00e0);
+    text-align: center;
+    padding: 10px;
+}
+
+footer {
+    background: linear-gradient(to right, #8e2de2, #4a00e0);
+    text-align: center;
+    padding: 15px;
+}
+
+footer h3 {
+    color: white;
+    font-size: 25px;
+}
+
+header h3 {
+    color: white;
+    font-size: 25px;
+}
+
+header h1 {
+    color: white;
+    font-size: 50px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+header h3 a {
+    color: white;
+    text-decoration: none;
+}
+
+header h3 a:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+.card {
+    border-radius: 20px;
+}
+
+.card card-header {
+    border-radius: 20px;
+}
+
+
+.infoSection {
+    padding: 0px 50px 50px 50px;
+}
+
+.formSection {
+    padding: 50px;
+}
+
+.form-group {
+    padding: 10px;
+}
+
+.warning {
+    padding: 10px;
+    color: red;
+}
+
+.submitButton {
+    margin: 11px;
+    padding: 13px;
+    border-radius: 25px;
+    background: linear-gradient(to right, #8e2de2, #4a00e0);
+    border: none;
+    outline: none;
+    color: white;
+    font-size: 18px;
+}
+
+.infoText p {
+    font-size: 25px;
+}

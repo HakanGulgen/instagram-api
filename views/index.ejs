@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang = "en">
+    <head>
+        <meta charset = "UTF-8">
+        <meta name = "viewport" content = "width=device-width, initial-scale=1">
+        <link href = "https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Open+Sans:wght@300&family=Raleway:wght@100&display=swap" rel="stylesheet">
+        <link rel = "stylesheet" href = "css/style.css">
+        <link rel = "icon" type = "image/x-icon" href = "images/icon.png">
+        <title>Instagram API</title>
+    </head>
+    <body>
+        <header>
+            <h1>Instagram API</h1>
+            <h3>Made by Hakan Güzelgülgen</h2>
+            <h3><a href = "https://github.com/HakanGulgen/instagramapi" target="_blank">Click here to check source code!</a></h2>
+        </header>
+
+        <div class = "formSection">
+            <div class = "card">
+                <h4 class = "card-header">LOG IN</h4>
+                <div class = "card-body">
+                    <form action = "/check" method = "post">
+                        <div class = "form-group">
+                            <label for = "username">Username:</label>
+                            <input type = "text" name = "username" id = "username" placeholder = "Username" class = "form-control">
+                        </div>
+                        <div class = "form-group">
+                            <label for = "password">Password:</label>
+                            <input type = "password" name = "password" id = "password" placeholder = "Password" class = "form-control">
+                        </div>
+                        <h4 class = "warning"><b>NOTE:</b> I do not save any data, you can use this API safely also you can check source code too.</h4>
+                        <button type = "submit" class = "submitButton">Check it</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class = "infoSection">
+            <div class = "card">
+                <h4 class = "card-header">INFORMATION</h4>
+                <div class = "card-body">
+                    <div class = "infoText">
+                        <p><%= info %></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <h3>Sorry for the design - Lazy back-end developer</h3>
+        </footer>
+    </body>
+</html>

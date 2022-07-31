@@ -1,0 +1,17 @@
+{
+  "name": "instagramapi",
+  "version": "1.0.0",
+  "description": "Instagram API to see who doesn't follow you.",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "Hakan",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "ejs": "^3.1.8",
+    "express": "^4.18.1",
+    "instagram-private-api": "^1.45.3"
+  }
+}
