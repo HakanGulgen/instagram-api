@@ -5,9 +5,11 @@ const app = express();
 
 const { IgApiClient } = require('instagram-private-api');
 
-const port = 3000;
+const port = process.env.port || 3000;
 
 let info = [];
+
+let accountName = '';
 
 let timeout = 0;
 
@@ -21,25 +23,15 @@ app.set('views', './views');
 app.set('view engine', 'ejs');
 
 app.get('/', (req, res) => {
-    res.render('index', {info:info});
+    res.render('index', {info:info, accountName:accountName});
 });
 
 app.post('/check', (req, res) => {
+    accountName = '';
     info = [];
-
-    if (timeout >= Date.now()) {
-        info[0] = 'You are checking too quickly, please wait...';
-
-        res.redirect('/');
-
-        return;
-    }
 
     const username = req.body.username;
     const password = req.body.password;
-
-    console.log(username);
-    console.log(password);
 
     if (username == '' || password == ''
      || username.length > 30 
@@ -69,19 +61,29 @@ app.post('/check', (req, res) => {
         return;
     }
 
+    const now = Date.now();
+
+    if (timeout >= now) {
+        const seconds = (timeout - now) / 1000;
+
+        info[0] = 'You are checking too quickly, please wait... (' + seconds + ' seconds)';
+
+        res.redirect('/');
+
+        return;
+    }
+
     info = [];
 
-    timeout = Date.now() + 20000;
+    timeout = now + 30000;
 
     const ig = new IgApiClient();
 
     ig.state.generateDevice(username);
 
     (async () => {
-        await ig.simulate.preLoginFlow();
-
         try {
-            const user = await ig.account.login(username, password);
+            const uszer = await ig.account.login(username, password);
 
             const followersFeed = ig.feed.accountFollowers(user.pk);
             const followingFeed = ig.feed.accountFollowing(user.pk);
@@ -103,6 +105,8 @@ app.post('/check', (req, res) => {
             }
 
             info = info.join(' ');
+
+            accountName = "(" + username + "'s unfollowers)";
             
             res.redirect('/');
         } catch (error) {
@@ -117,6 +121,7 @@ app.post('/check', (req, res) => {
                     break;
                 default:
                     info[0] = error;
+                    console.log(error);
                     break;
             }
 
