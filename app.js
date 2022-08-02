@@ -24,6 +24,9 @@ app.set('view engine', 'ejs');
 
 app.get('/', (req, res) => {
     res.render('index', {info:info, accountName:accountName});
+
+    info = [];
+    accountName = '';
 });
 
 app.post('/check', (req, res) => {
@@ -83,7 +86,7 @@ app.post('/check', (req, res) => {
 
     (async () => {
         try {
-            const uszer = await ig.account.login(username, password);
+            const user = await ig.account.login(username, password);
 
             const followersFeed = ig.feed.accountFollowers(user.pk);
             const followingFeed = ig.feed.accountFollowing(user.pk);
@@ -104,7 +107,11 @@ app.post('/check', (req, res) => {
                 info[i] = i + ". " + user.username;
             }
 
-            info = info.join(' ');
+            if (info.length == 0) {
+                info[0] = 'Everyone follows you back, well done :)'
+            } else {
+                info = info.join(' ');
+            }
 
             accountName = "(" + username + "'s unfollowers)";
             
